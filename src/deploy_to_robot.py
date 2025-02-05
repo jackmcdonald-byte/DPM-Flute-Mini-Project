@@ -39,7 +39,7 @@ def read_password():
     "Read the password from the hidden .env file, or prompt user to enter password if it does not exist."
     if not os.path.exists(ENV_FILE):
         with open(ENV_FILE, "w") as f:
-            f.write('{\n  "password": "ENTER YOUR BRICKPI PASSWORD HERE"\n}\n')  # change the .env file, NOT this line
+            f.write('{\n  "password": "1234"\n}\n')  # change the .env file, NOT this line
         error("Robot password not set in .env file! Please enter it there, save the file, and try again.")
         exit(1)
     with open(ENV_FILE) as f:

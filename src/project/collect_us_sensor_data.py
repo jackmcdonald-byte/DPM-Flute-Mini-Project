@@ -16,8 +16,8 @@ SOUND = sound.Sound(duration=0.3, pitch="A4", volume=60)
 
 print("Program start.\nWaiting for sensors to turn on...")
 
-TOUCH_SENSOR = TouchSensor(1)
-US_SENSOR = EV3UltrasonicSensor(2)
+TOUCH_SENSOR = TouchSensor(1) # touch sensor on port 1
+US_SENSOR = EV3UltrasonicSensor(2) # ultrasonic sensor on port 2
 
 
 wait_ready_sensors(True) # Input True to see what the robot is trying to initialize! False to be silent.
@@ -36,9 +36,9 @@ def collect_continuous_us_data():
         while not TOUCH_SENSOR.is_pressed():
             us_data = US_SENSOR.get_value()  # Float value in centimeters 0, capped to 255 cm
             if us_data is not None: # If None is given, then data collection failed that time
-                print(us_data)
-                output_file.write(f"{us_data}\n")
-            sleep(DELAY_SEC)
+                print(us_data) # Print the data to the terminal
+                output_file.write(f"{us_data}\n") # Write the data to the file
+            sleep(DELAY_SEC) # delay between measurements
     except BaseException:  # capture all exceptions including KeyboardInterrupt (Ctrl-C)
         pass
     finally:
