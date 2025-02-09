@@ -2,7 +2,7 @@ from src.flute import Flute
 from src.drum import Drum
 import threading
 import time
-from src import us_sensor, touch_sensor
+from src.utils import us_sensor, touch_sensor
 
 
 class Brickophone:

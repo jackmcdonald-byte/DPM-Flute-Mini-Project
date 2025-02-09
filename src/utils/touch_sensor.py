@@ -1,4 +1,4 @@
-from project.utils.brick import TouchSensor, wait_ready_sensors
+from src.utils.brick import TouchSensor, wait_ready_sensors
 
 TOUCH_SENSOR_1 = TouchSensor(1)
 TOUCH_SENSOR_2 = TouchSensor(2)

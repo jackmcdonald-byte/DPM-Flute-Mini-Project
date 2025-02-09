@@ -1,4 +1,4 @@
-from project.utils.sound import Sound
+from src.utils.sound import Sound
 
 NOTE_MAPPING = {
     1: "C3",

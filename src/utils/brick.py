@@ -38,7 +38,7 @@ try:
 except (ModuleNotFoundError, OSError, TypeError) as err:
     print('A BrickPi module is missing, or BrickPi is missing, intializing dummy BP', file=sys.stderr)
     print(f'Warning: {err.__class__.__name__}({err})', file=sys.stderr)
-    from .dummy import Enumeration, FirmwareVersionError, SensorError, BrickPi3
+    from src.project.utils.dummy import Enumeration, FirmwareVersionError, SensorError, BrickPi3
     BP = BrickPi3()  # The BrickPi3 instance
 
 _OLD_BP = BP

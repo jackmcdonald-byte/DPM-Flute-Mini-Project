@@ -1,4 +1,4 @@
-import motor
+from src.utils import motor
 import time
 
 ANGLE = 90

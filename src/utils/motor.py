@@ -1,4 +1,4 @@
-from project.utils.brick import Motor
+from src.utils.brick import Motor
 import time
 
 MOTOR = Motor("A")
