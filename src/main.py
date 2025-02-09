@@ -1,9 +1,10 @@
 from src.brickophone import Brickophone
 
 
-def main():
+def main() -> None:
     brickophone = Brickophone()
-    brickophone.turn_on()
+    brickophone.process()
+
 
 if __name__ == '__main__':
     main()
