@@ -1,0 +1,64 @@
+from utils.sound import Sound
+from utils.brick import TouchSensor, EV3UltrasonicSensor, Motor, wait_ready_sensors, reset_brick
+from time import sleep
+
+# Constants
+DELAY_SEC = 0.1  # Loop delay
+NOTE_MAPPING = {
+    (0, 6): "A3",
+    (6, 12): "C4",
+    (12, 16): "E4",
+    (16, 20): "G4",
+}
+
+# Initialize sensors and motor
+print("Initializing sensors and motor...")
+TOUCH_SENSOR_1 = TouchSensor(1)
+TOUCH_SENSOR_2 = TouchSensor(2)
+US_SENSOR = EV3UltrasonicSensor(3)
+MOTOR = Motor("A")  # Change to the correct motor port if needed
+wait_ready_sensors(True)  # Show initialization status
+print("Sensors and motor ready.")
+
+def get_note_from_distance(distance):
+    """Determine which note to play based on the ultrasonic sensor distance."""
+    for (min_d, max_d), note in NOTE_MAPPING.items():
+        if min_d < distance < max_d:
+            return note
+    return None  # No note if distance is out of range
+
+def play_flute(note):
+    """Play a note using the Sound class."""
+    if note:
+        print(f"Playing note: {note}")
+        tone = Sound(duration=1.0, volume=95, pitch=note)
+        tone.play()
+        tone.wait_done()
+
+try:
+    while True:
+        distance = US_SENSOR.get_value()  # Get ultrasonic distance
+        touch_1 = TOUCH_SENSOR_1.is_pressed()
+        touch_2 = TOUCH_SENSOR_2.is_pressed()
+
+        if touch_1 and touch_2:
+            print("Emergency stop activated!")
+            break  # Exit loop
+
+        if touch_1:
+            note = get_note_from_distance(distance)
+            play_flute(note)
+
+        # Move the motor back and forth between 0 and 90 degrees
+        MOTOR.set_position(90)
+        sleep(1)  # Wait for the motor to move
+        MOTOR.set_position(0)
+        sleep(1)  # Wait for the motor to move
+
+        sleep(DELAY_SEC)
+
+except KeyboardInterrupt:
+    print("Program interrupted!")
+
+finally:
+    reset_brick()  # Ensure proper shutdown
