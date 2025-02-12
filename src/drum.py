@@ -1,20 +1,20 @@
-from src.utils import motor
+from utils import motor
 import time
 
 ANGLE = 90
-PERIOD = 2
+PERIOD = 0.08
 
 
 class Drum:
     """
     Represents a Drum component that interacts with a Brickophone and its respective
     touch sensors for rhythmic actions.
-    
+
     The Drum class manages the operational states ('off', 'idle', 'active') of the drum.
     It provides methods to start, stop, and process drum actions based on inputs from
     a connected device (Brickophone). The purpose is to mimic a toggleable drum loop
     controlled via external sensors.
-    
+
     Attributes:
         brickophone (Brickophone): An instance of the Brickophone class used to interact with touch sensors.
         state (str): The current state of the drum, which can be 'off', 'idle', or 'active'.
@@ -32,7 +32,7 @@ class Drum:
 
         This method determines the current state of the drum and controls
         the toggleable drum loop.
-        
+
         Returns:
             None
         """
@@ -54,7 +54,7 @@ class Drum:
     def stop(self) -> None:
         """
         Updates the drum state to 'off'.
-        
+
         Returns:
             None
         """
@@ -63,7 +63,7 @@ class Drum:
     def start(self) -> None:
         """
         Updates the drum state to 'idle'.
-        
+
         Returns:
             None
         """

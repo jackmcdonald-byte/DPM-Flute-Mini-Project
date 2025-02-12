@@ -1,4 +1,4 @@
-from src.brickophone import Brickophone
+from brickophone import Brickophone
 
 
 def main() -> None:

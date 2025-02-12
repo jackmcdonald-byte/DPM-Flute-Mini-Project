@@ -1,4 +1,5 @@
-from src.utils.sound import Sound
+from utils.sound import Sound
+import time
 
 NOTE_MAPPING = {
     1: "C3",
@@ -29,9 +30,9 @@ NOTE_MAPPING = {
 
 NOTE_DISTANCE_SPACING = 2
 MAX_DISTANCE = 30
-DISTANCE_OFFSET = 3
+DISTANCE_OFFSET = 4
 VOLUME = 100
-DURATION = 1
+DURATION = 0.3
 
 
 class Flute:
@@ -109,3 +110,4 @@ class Flute:
         """
         if distance in self.note_distance_mapping:
             self.note_distance_mapping[distance].play()
+            time.sleep(DURATION - DURATION * 0.2)

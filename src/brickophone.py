@@ -1,8 +1,8 @@
-from src.flute import Flute
-from src.drum import Drum
+from flute import Flute
+from drum import Drum
 import threading
 import time
-from src.utils import us_sensor, touch_sensor
+from utils import us_sensor, touch_sensor
 
 
 class Brickophone:
@@ -66,18 +66,16 @@ class Brickophone:
         """
         while True:
             if self.state == 'off':
-                print('The brickophone is off.')
                 if self.touch_sensor_1_state and self.touch_sensor_2_state:
                     print('Powering on...')
                     self.__transition_to('on')
-                    time.sleep(2)
+                    time.sleep(3)
 
             elif self.state == 'on':
-                print('The brickophone is on.')
                 if self.touch_sensor_1_state and self.touch_sensor_2_state:
                     print('Powering off...')
                     self.__transition_to('off')
-                    time.sleep(2)
+                    time.sleep(3)
 
     def __transition_to(self, new_state: str) -> None:
         self.__exit_state()
