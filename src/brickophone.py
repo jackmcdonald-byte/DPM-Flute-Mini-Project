@@ -69,13 +69,13 @@ class Brickophone:
                 if self.touch_sensor_1_state and self.touch_sensor_2_state:
                     print('Powering on...')
                     self.__transition_to('on')
-                    time.sleep(3)
+                    time.sleep(2)
 
             elif self.state == 'on':
                 if self.touch_sensor_1_state and self.touch_sensor_2_state:
                     print('Powering off...')
                     self.__transition_to('off')
-                    time.sleep(3)
+                    time.sleep(2)
 
     def __transition_to(self, new_state: str) -> None:
         self.__exit_state()
@@ -84,11 +84,13 @@ class Brickophone:
 
     def __exit_state(self) -> None:
         if self.state == 'on':
+            time.sleep(1)
             self.flute.stop()
             self.drum.stop()
 
     def __enter_state(self) -> None:
         if self.state == 'on':
+            time.sleep(2)
             self.flute.start()
             self.drum.start()
 

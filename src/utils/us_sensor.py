@@ -11,4 +11,4 @@ def get_distance() -> int:
     Returns:
         int: The distance measured by the ultrasonic sensor in centimeters.
     """
-    return us_sensor.get_cm() // 1
+    return us_sensor.get_value() // 1

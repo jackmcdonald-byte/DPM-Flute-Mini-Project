@@ -1,8 +1,8 @@
 from utils import motor
 import time
 
-ANGLE = 90
-PERIOD = 0.08
+ANGLE = 80
+PERIOD = 0.2
 
 
 class Drum:

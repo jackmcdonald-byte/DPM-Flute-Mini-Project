@@ -2,6 +2,7 @@ from utils.sound import Sound
 import time
 
 NOTE_MAPPING = {
+    0: "B3",
     1: "C3",
     2: "C#3",
     3: "D3",
@@ -28,9 +29,9 @@ NOTE_MAPPING = {
     24: "B4",
     25: "C5"}
 
-NOTE_DISTANCE_SPACING = 2
-MAX_DISTANCE = 30
-DISTANCE_OFFSET = 4
+NOTE_DISTANCE_SPACING = 5
+MAX_DISTANCE = 20
+DISTANCE_OFFSET = 0
 VOLUME = 100
 DURATION = 0.3
 
@@ -42,11 +43,11 @@ class Flute:
     The Flute class is designed to integrate with a Brickophone, utilizing its sensors
     such as touch and ultrasonic sensors. The class maps distances to specific sound
     tones, providing a mechanism to play corresponding notes based on measured distances.
-    It supports state management (active or idle) to control when sounds should be played.
+    It supports state management (active or off) to control when sounds should be played.
 
     Attributes:
         brickophone (Brickophone): The Brickophone object that the Flute interacts with.
-        state (str): The current state of the Flute, either 'idle' or 'active'.
+        state (str): The current state of the Flute, either 'off' or 'active'.
         note_capacity (int): The maximum number of notes that can be mapped based on
                              defined distance and spacing.
         note_distance_mapping (dict): A mapping between distances (int) and Sound objects
@@ -57,7 +58,7 @@ class Flute:
 
     def __init__(self, brickophone) -> None:
         self.brickophone = brickophone
-        self.state = 'idle'
+        self.state = 'off'
 
         self.note_capacity = MAX_DISTANCE // NOTE_DISTANCE_SPACING
         self.note_distance_mapping = {}
@@ -91,12 +92,12 @@ class Flute:
 
     def stop(self) -> None:
         """
-        Updates the flute state to 'idle'.
+        Updates the flute state to 'off'.
 
         Returns:
             None
         """
-        self.state = 'idle'
+        self.state = 'off'
 
     def play_sound(self, distance: int) -> None:
         """
